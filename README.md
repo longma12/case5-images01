@@ -1,8 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 图片综合处理工具
 
-## Getting Started
+一个功能强大的图片处理网站，提供图片压缩、抠图去背景、图片识别和 AI 生图四大核心功能。
 
-First, run the development server:
+## 功能特点
+
+### 1. 图片压缩
+- 支持 JPG、PNG、WEBP 格式
+- 可调节压缩质量（10%-100%）
+- 实时预览压缩效果
+- 显示文件大小对比和压缩比例
+- 支持拖拽上传
+
+### 2. 抠图去背景
+- 自动识别图片主体
+- 移除背景生成透明图片
+- 支持人像、产品、动物等多种场景
+- 输出 PNG 格式（支持透明通道）
+
+### 3. 图片识别
+- 使用 TensorFlow.js 和 COCO-SSD 模型
+- 识别 80+ 种常见物体
+- 显示识别置信度
+- 中文标签显示
+- 支持识别：人、动物、交通工具、食物、家具等
+
+### 4. AI 生图
+- 根据文字描述生成图片
+- 支持多种艺术风格：
+  - 写实风格
+  - 动漫风格
+  - 油画风格
+  - 水彩风格
+  - 3D 渲染
+- 可选择图片尺寸（512x512、768x768、1024x1024）
+
+## 技术栈
+
+- **前端**: HTML/CSS/JavaScript (原生实现)
+- **AI 模型**:
+  - TensorFlow.js
+  - COCO-SSD (物体识别)
+- **图片处理**: Canvas API
+- **样式**: 现代渐变设计，完全响应式
+
+## 使用方法
+
+### 直接使用（静态版本）
+
+1. 直接用浏览器打开 `index.html` 文件
+2. 开始使用各项功能（无需启动服务器）
+
+### Next.js 开发版本
+
+如需使用 Next.js 版本，运行开发服务器：
 
 ```bash
 npm run dev
@@ -10,27 +60,93 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+打开 [http://localhost:3000](http://localhost:3000) 查看结果。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 文件结构
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+case5-images01/
+├── index.html      # 静态版主页面（可直接打开使用）
+├── styles.css      # 样式文件
+├── script.js       # 功能脚本
+├── app/            # Next.js 应用目录
+├── public/         # 静态资源
+└── README.md       # 说明文档
+```
 
-## Learn More
+## 浏览器兼容性
 
-To learn more about Next.js, take a look at the following resources:
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- Opera 76+
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+建议使用最新版本的现代浏览器以获得最佳体验。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 功能说明
 
-## Deploy on Vercel
+### 图片压缩使用步骤
+1. 点击"图片压缩"标签
+2. 上传图片（点击或拖拽）
+3. 调整压缩质量滑块
+4. 查看压缩效果和文件大小对比
+5. 点击下载按钮保存压缩后的图片
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 抠图去背景使用步骤
+1. 点击"抠图去背景"标签
+2. 上传需要去背景的图片
+3. 等待处理完成
+4. 查看去背景效果（透明背景用棋盘格显示）
+5. 点击下载按钮保存 PNG 格式图片
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 图片识别使用步骤
+1. 点击"图片识别"标签
+2. 上传要识别的图片
+3. 等待 AI 模型加载和识别
+4. 查看识别结果和置信度
+
+### AI 生图使用步骤
+1. 点击"AI 生图"标签
+2. 在文本框输入图片描述
+3. 选择图片风格和尺寸
+4. 点击"生成图片"按钮
+5. 等待生成完成
+6. 下载生成的图片
+
+## 注意事项
+
+- **隐私保护**: 所有处理均在浏览器本地完成，图片不会上传到服务器
+- **性能**: AI 生图功能为演示版本，生成的是艺术图案。如需真实 AI 生图，需要接入专业 API（如 Stable Diffusion）
+- **文件大小**: 建议上传图片不超过 10MB，以获得更好的处理速度
+- **网络**: 首次使用图片识别功能需要下载 AI 模型（约 5MB），请确保网络连接正常
+
+## 升级建议
+
+如需生产环境使用，可以考虑以下升级：
+
+1. **抠图功能**: 集成专业抠图 API（如 remove.bg API）
+2. **AI 生图**: 接入 Stable Diffusion、DALL-E 或 Midjourney API
+3. **图片识别**: 添加 OCR 文字识别功能
+4. **批量处理**: 支持多图片批量处理
+5. **历史记录**: 添加处理历史记录功能
+6. **云存储**: 集成云存储服务保存处理结果
+
+## 部署
+
+可以将静态版本（index.html, styles.css, script.js）部署到：
+- GitHub Pages
+- Netlify
+- Vercel
+- 任何静态网站托管服务
+
+或使用 Next.js 版本部署到 [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)。
+
+## 开源协议
+
+MIT License
+
+---
+
+享受使用这个图片处理工具！

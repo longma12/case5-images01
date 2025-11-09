@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片综合处理工具</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🖼️ 图片综合处理工具</h1>
+            <p class="subtitle">一站式图片处理解决方案 | <a href="guide.html" style="color: white; text-decoration: underline;">使用指南</a></p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="compress">图片压缩</button>
+            <button class="tab-btn" data-tab="remove-bg">抠图去背景</button>
+            <button class="tab-btn" data-tab="recognize">图片识别</button>
+            <button class="tab-btn" data-tab="ai-generate">AI 生图</button>
+        </nav>
+
+        <!-- 图片压缩 -->
+        <div class="tab-content active" id="compress">
+            <div class="card">
+                <h2>图片压缩</h2>
+                <p class="description">减小图片文件大小，保持良好画质</p>
+                <div class="upload-area" id="compress-upload">
+                    <input type="file" id="compress-input" accept="image/*" hidden>
+                    <label for="compress-input" class="upload-label">
+                        <span class="upload-icon">📁</span>
+                        <span>点击或拖拽上传图片</span>
+                        <span class="upload-hint">支持 JPG、PNG、WEBP 格式</span>
+                    </label>
+                </div>
+                <div class="settings">
+                    <label>
+                        压缩质量: <span id="quality-value">80</span>%
+                        <input type="range" id="quality-slider" min="10" max="100" value="80">
+                    </label>
+                </div>
+                <div class="preview-area" id="compress-preview" style="display: none;">
+                    <div class="preview-box">
+                        <h3>原图</h3>
+                        <img id="compress-original" alt="原图">
+                        <p class="file-info" id="original-info"></p>
+                    </div>
+                    <div class="preview-box">
+                        <h3>压缩后</h3>
+                        <img id="compress-result" alt="压缩后">
+                        <p class="file-info" id="compressed-info"></p>
+                    </div>
+                </div>
+                <button class="btn-primary" id="compress-download" style="display: none;">下载压缩图片</button>
+            </div>
+        </div>
+
+        <!-- 抠图去背景 -->
+        <div class="tab-content" id="remove-bg">
+            <div class="card">
+                <h2>抠图去背景</h2>
+                <p class="description">自动识别主体并移除背景</p>
+                <div class="upload-area" id="removebg-upload">
+                    <input type="file" id="removebg-input" accept="image/*" hidden>
+                    <label for="removebg-input" class="upload-label">
+                        <span class="upload-icon">📁</span>
+                        <span>点击或拖拽上传图片</span>
+                        <span class="upload-hint">支持人像、产品、动物等</span>
+                    </label>
+                </div>
+                <div class="preview-area" id="removebg-preview" style="display: none;">
+                    <div class="preview-box">
+                        <h3>原图</h3>
+                        <img id="removebg-original" alt="原图">
+                    </div>
+                    <div class="preview-box">
+                        <h3>去背景后</h3>
+                        <div class="transparent-bg">
+                            <canvas id="removebg-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="loading" id="removebg-loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>正在处理中...</p>
+                </div>
+                <button class="btn-primary" id="removebg-download" style="display: none;">下载透明图片</button>
+            </div>
+        </div>
+
+        <!-- 图片识别 -->
+        <div class="tab-content" id="recognize">
+            <div class="card">
+                <h2>图片识别</h2>
+                <p class="description">识别图片中的物体、场景和文字</p>
+                <div class="upload-area" id="recognize-upload">
+                    <input type="file" id="recognize-input" accept="image/*" hidden>
+                    <label for="recognize-input" class="upload-label">
+                        <span class="upload-icon">📁</span>
+                        <span>点击或拖拽上传图片</span>
+                        <span class="upload-hint">支持物体识别和文字识别</span>
+                    </label>
+                </div>
+                <div class="preview-area" id="recognize-preview" style="display: none;">
+                    <div class="preview-box">
+                        <h3>原图</h3>
+                        <img id="recognize-image" alt="识别图片">
+                    </div>
+                    <div class="preview-box">
+                        <h3>识别结果</h3>
+                        <div class="recognize-results" id="recognize-results">
+                            <div class="loading" id="recognize-loading">
+                                <div class="spinner"></div>
+                                <p>正在识别中...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI 生图 -->
+        <div class="tab-content" id="ai-generate">
+            <div class="card">
+                <h2>AI 生图</h2>
+                <p class="description">根据描述生成精美图片</p>
+                <div class="generate-form">
+                    <div class="form-group">
+                        <label for="prompt-input">描述你想生成的图片</label>
+                        <textarea id="prompt-input" rows="4" placeholder="例如：一只可爱的橘猫坐在窗台上，阳光洒在它身上，摄影风格"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="style-select">图片风格</label>
+                            <select id="style-select">
+                                <option value="realistic">写实风格</option>
+                                <option value="anime">动漫风格</option>
+                                <option value="oil-painting">油画风格</option>
+                                <option value="watercolor">水彩风格</option>
+                                <option value="3d">3D渲染</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="size-select">图片尺寸</label>
+                            <select id="size-select">
+                                <option value="512x512">512×512</option>
+                                <option value="768x768">768×768</option>
+                                <option value="1024x1024">1024×1024</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn-primary" id="generate-btn">生成图片</button>
+                </div>
+                <div class="loading" id="generate-loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>AI 正在创作中，请稍候...</p>
+                </div>
+                <div class="preview-area" id="generate-preview" style="display: none;">
+                    <div class="preview-box full-width">
+                        <h3>生成结果</h3>
+                        <img id="generated-image" alt="生成的图片">
+                        <button class="btn-primary" id="generate-download">下载图片</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 图片综合处理工具 | 所有功能均在浏览器本地运行</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.11.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation@0.1.1675465747"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用指南 - 图片综合处理工具</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #764ba2;
+            margin-top: 30px;
+        }
+        .feature {
+            background: #f8f9ff;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .step-list {
+            list-style: none;
+            counter-reset: step-counter;
+            padding-left: 0;
+        }
+        .step-list li {
+            counter-increment: step-counter;
+            margin: 15px 0;
+            padding-left: 40px;
+            position: relative;
+        }
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .btn-home {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+        .btn-home:hover {
+            opacity: 0.9;
+        }
+        .tip {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>图片综合处理工具 - 使用指南</h1>
+
+        <p>欢迎使用图片综合处理工具！本工具提供四大核心功能，所有处理均在浏览器本地完成，保护您的隐私。</p>
+
+        <div class="feature">
+            <h2>🗜️ 功能一：图片压缩</h2>
+            <p><strong>用途：</strong>减小图片文件大小，便于网络传输和存储。</p>
+            <ul class="step-list">
+                <li>点击顶部"图片压缩"标签</li>
+                <li>点击上传区域或直接拖拽图片文件</li>
+                <li>拖动质量滑块调整压缩程度（10%-100%）</li>
+                <li>查看左右对比效果和文件大小变化</li>
+                <li>满意后点击"下载压缩图片"按钮</li>
+            </ul>
+            <div class="tip">
+                <strong>💡 小提示：</strong>质量设置为80-90%可以在保持画质的同时大幅减小文件大小。
+            </div>
+        </div>
+
+        <div class="feature">
+            <h2>✂️ 功能二：抠图去背景</h2>
+            <p><strong>用途：</strong>自动识别主体并移除背景，生成透明图片。</p>
+            <ul class="step-list">
+                <li>点击"抠图去背景"标签</li>
+                <li>上传需要去背景的图片</li>
+                <li>等待系统自动处理（通常几秒钟）</li>
+                <li>查看去背景效果（透明部分显示为棋盘格）</li>
+                <li>点击"下载透明图片"保存PNG格式文件</li>
+            </ul>
+            <div class="tip">
+                <strong>💡 小提示：</strong>主体与背景对比度越高，效果越好。适合处理人像、产品图等。
+            </div>
+        </div>
+
+        <div class="feature">
+            <h2>🔍 功能三：图片识别</h2>
+            <p><strong>用途：</strong>使用AI识别图片中的物体、动物、交通工具等。</p>
+            <ul class="step-list">
+                <li>点击"图片识别"标签</li>
+                <li>上传要识别的图片</li>
+                <li>首次使用需加载AI模型（约5MB，请稍等）</li>
+                <li>查看识别结果列表和置信度百分比</li>
+                <li>系统可识别80+种常见物体</li>
+            </ul>
+            <div class="tip">
+                <strong>💡 小提示：</strong>图片越清晰，识别准确率越高。支持识别多个物体。
+            </div>
+        </div>
+
+        <div class="feature">
+            <h2>🎨 功能四：AI 生图</h2>
+            <p><strong>用途：</strong>根据文字描述生成艺术图片。</p>
+            <ul class="step-list">
+                <li>点击"AI 生图"标签</li>
+                <li>在文本框输入详细的图片描述</li>
+                <li>选择喜欢的艺术风格（写实、动漫、油画等）</li>
+                <li>选择图片尺寸（512px、768px或1024px）</li>
+                <li>点击"生成图片"按钮，等待2-3秒</li>
+                <li>满意后点击"下载图片"保存</li>
+            </ul>
+            <div class="tip">
+                <strong>💡 小提示：</strong>描述越详细越好。例如："一只可爱的橘猫坐在窗台上，阳光洒在它身上，温暖的色调，摄影风格"。
+            </div>
+        </div>
+
+        <h2>⚠️ 注意事项</h2>
+        <ul>
+            <li><strong>隐私安全：</strong>所有处理在浏览器本地完成，图片不会上传到服务器</li>
+            <li><strong>文件大小：</strong>建议上传图片不超过10MB</li>
+            <li><strong>浏览器要求：</strong>建议使用Chrome、Edge、Firefox或Safari最新版本</li>
+            <li><strong>网络连接：</strong>图片识别功能首次使用需要下载AI模型</li>
+            <li><strong>AI生图说明：</strong>当前为演示版本，实际生成的是艺术图案</li>
+        </ul>
+
+        <h2>🚀 技术特点</h2>
+        <ul>
+            <li>纯前端实现，无需后端服务器</li>
+            <li>使用TensorFlow.js进行AI识别</li>
+            <li>Canvas API实现图片处理</li>
+            <li>支持拖拽上传，操作便捷</li>
+            <li>完全响应式设计，支持移动端</li>
+        </ul>
+
+        <a href="index.html" class="btn-home">← 返回主页开始使用</a>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid #e0e0e0;">
+
+        <p style="text-align: center; color: #999; font-size: 0.9rem;">
+            © 2025 图片综合处理工具 | 开源项目
+        </p>
+    </div>
+</body>
+</html>
